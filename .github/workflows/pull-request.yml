@@ -1,4 +1,4 @@
-name: pull-request
+name: Pull-request
 
 on:
   pull_request:
@@ -19,5 +19,5 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Run test cases
+      - name: Build and Run test cases
         run: mvn clean install
