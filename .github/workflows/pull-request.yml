@@ -69,7 +69,9 @@ jobs:
       - name: Run SonarQube analysis
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        # get current working directory
         run: |
+          echo "Current working directory: $(pwd)" && \
           mvn verify -DskipTests sonar:sonar \
             -Dsonar.projectKey=GayathriSrividya_groups_service \
             -Dsonar.organization=gayathrisrividya \
