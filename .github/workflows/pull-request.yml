@@ -19,5 +19,39 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Restore Maven cache
+        uses: actions/cache@v3
+        with:
+          path: ~/.m2
+          key: groups-dependency-cache-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            groups-dependency-cache-
+
       - name: Build and Run test cases
         run: mvn clean install
+
+      - name: Save the build artifact
+        run: cd service && mvn play2:dist
+
+      - name: Save Maven cache
+        uses: actions/cache@v3
+        with:
+          path: ~/.m2
+          key: groups-dependency-cache-${{ hashFiles('**/pom.xml') }}
+
+      - name: Store build artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: group-service
+          path: service/target/group-service-1.0.0-dist.zip
+
+      - name: Run SonarQube analysis
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: mvn verify -DskipTests sonar:sonar \
+          -Dsonar.projectKey=GayathriSrividya_groups-service \
+          -Dsonar.organization=sunbird-lern \
+          -Dsonar.host.url=https://sonarcloud.io \
+          -Dsonar.login=${{ secrets.SONAR_TOKEN }} \
+          -Dsonar.coverage.exclusions=**/cassandra-utils/**,**/platform-cache/**,**/sb-actor/**,**/sb-telemetry-utils/**,**/sb-utils/**,**/models/**,**/bean/*,**/sb-common/** \
+          -Dsonar.coverage.jacoco.xmlReportPaths=/home/runner/work/your-repo-name/reports/target/jacoco/jacoco.xml
