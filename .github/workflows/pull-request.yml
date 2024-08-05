@@ -70,7 +70,7 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
-          echo ${{secrets.SONAR_TOKEN}} | sed 's/./& /g' \
+          echo ${{ secrets.SONAR_TOKEN }}  \
           mvn verify -DskipTests sonar:sonar \
             -Dsonar.projectKey=GayathriSrividya_groups-service \
             -Dsonar.organization=gayathrisrividya \
