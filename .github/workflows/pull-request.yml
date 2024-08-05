@@ -78,5 +78,5 @@ jobs:
             -Dsonar.host.url=https://sonarcloud.io \
             -Dsonar.login=${{ secrets.SONAR_TOKEN }} \
             -Dsonar.coverage.exclusions=**/cassandra-utils/**,**/platform-cache/**,**/sb-actor/**,**/sb-telemetry-utils/**,**/sb-utils/**,**/models/**,**/bean/*,**/sb-common/** \
-            -Dsonar.coverage.jacoco.xmlReportPaths=/home/runner/work/project/reports/target/jacoco/jacoco.xml \
+            -Dsonar.coverage.jacoco.xmlReportPaths=/home/runner/work/groups-service/groups-service/reports/target/jacoco/jacoco.xml \
             -Pcoverage
