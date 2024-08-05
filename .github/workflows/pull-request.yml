@@ -70,11 +70,11 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
-          echo ${{ secrets.SONAR_TOKEN }}  \
           mvn verify -DskipTests sonar:sonar \
             -Dsonar.projectKey=GayathriSrividya_groups-service \
             -Dsonar.organization=gayathrisrividya \
             -Dsonar.host.url=https://sonarcloud.io \
             -Dsonar.login=${{ secrets.SONAR_TOKEN }} \
             -Dsonar.coverage.exclusions=**/cassandra-utils/**,**/platform-cache/**,**/sb-actor/**,**/sb-telemetry-utils/**,**/sb-utils/**,**/models/**,**/bean/*,**/sb-common/** \
-            -Dsonar.coverage.jacoco.xmlReportPaths=/home/runner/work/project/reports/target/jacoco/jacoco.xml
+            -Dsonar.coverage.jacoco.xmlReportPaths=/home/runner/work/project/reports/target/jacoco/jacoco.xml \
+            -Pcoverage
