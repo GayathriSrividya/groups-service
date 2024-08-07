@@ -56,6 +56,7 @@ jobs:
       - name: Move reports to temp directory
         run: |
           pwd && \
+          cat reports/target/jacoco/jacoco.xml && \
           mkdir -p /home/runner/temp/ && \
           mv reports /home/runner/temp/
 
