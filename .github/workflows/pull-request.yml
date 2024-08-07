@@ -56,8 +56,8 @@ jobs:
       - name: Move reports to temp directory
         run: |
           pwd && \
-          mkdir -p /home/runner/temp/reports && \
-          mv reports /home/runner/temp/reports
+          mkdir -p /home/runner/temp/ && \
+          mv reports /home/runner/temp/
 
       - name: List and display report files
         run: |
