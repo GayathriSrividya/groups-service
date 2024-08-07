@@ -32,8 +32,6 @@ jobs:
       - name: Build and Run test cases
         run: mvn clean install
 
-      - name: Generate Jacoco XML Report
-        run: mvn jacoco:report
 
       - name: Save the build artifact
         run: cd service && mvn play2:dist
@@ -73,6 +71,8 @@ jobs:
           restore-keys: |
             groups-dependency-cache-
 
+      - name: present working directory
+        run: pwd
       - name: Run SonarQube analysis
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
