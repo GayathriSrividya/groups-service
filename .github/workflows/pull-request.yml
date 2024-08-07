@@ -60,6 +60,7 @@ jobs:
           java --version && \
           ls reports/target/jacoco && \
           cat reports/target/jacoco/jacoco.xml &&  \
+          mkdir -p /home/runner/temp && \
           mv reports/target/jacoco/jacoco.xml /home/runner/temp/jacoco.xml
 
 
