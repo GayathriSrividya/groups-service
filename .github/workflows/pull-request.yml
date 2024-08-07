@@ -84,6 +84,6 @@ jobs:
             -Dsonar.jacoco.reportPath=**/jacoco/jacoco.exec \
             -Pcoverage
         
-        - name: list all files
+      - name: list all files
           run: ls -R
 
