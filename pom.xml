@@ -52,7 +52,7 @@
         </dependency>
 
     </dependencies>
-    <!-- <build>
+    <build>
         <plugins>
             <plugin>
                 <groupId>org.jacoco</groupId>
@@ -80,11 +80,10 @@
                 </executions>
             </plugin>
         </plugins>
-    </build> -->
+    </build>
 
-    <profiles>
+    <!-- <profiles>
         <profile>
-            <id>coverage</id>
             <build>
                 <plugins>
                     <plugin>
@@ -116,7 +115,7 @@
                 </plugins>
             </build>
         </profile>
-    </profiles>
+    </profiles> -->
  </project>
 
 
