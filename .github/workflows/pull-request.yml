@@ -52,11 +52,11 @@ jobs:
     runs-on: ubuntu-2004:202008-01
     needs: run-test-cases
     steps:
-      - name: Set up JDK 11
+      - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
-          java-version: '11'
+          java-version: '17'
 
       - name: Checkout code
         uses: actions/checkout@v4
@@ -71,8 +71,10 @@ jobs:
           restore-keys: |
             groups-dependency-cache-
 
-      - name: present working directory
-        run: pwd
+      - name: xml report
+        run: |
+          cat reports/target/jacoco/jacoco.xml
+
       - name: Run SonarQube analysis
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
