@@ -92,8 +92,6 @@
                         <artifactId>jacoco-maven-plugin</artifactId>
                         <version>0.8.8</version>
                         <configuration>
-                            <destFile>${basedir}/target/coverage-reports/jacoco-unit.exec</destFile>
-                            <dataFile>${basedir}/target/coverage-reports/jacoco-unit.exec</dataFile>
                             <excludes>
                                 <exclude>**/common/**</exclude>
                                 <exclude>**/router/**</exclude>
@@ -102,6 +100,9 @@
                                 <exclude>**/routes$javascript.**</exclude>
                                 <exclude>org/sunbird/models/**/*</exclude>
                             </excludes>
+                             <formats>
+                                <format>XML</format>
+                            </formats>
                         </configuration>
                         <executions>
                             <execution>
