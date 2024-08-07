@@ -59,9 +59,9 @@ jobs:
         run: |
           java --version && \
           mkdir -p /home/temp && \
-          mv reports/ /home/temp/ && \
+          mv reports /home/temp && \
           ls /home/temp/reports/target/jacoco && \
-          cat /home/temp/reports/target/jacoco/jacoco.xml && \
+          cat /home/temp/reports/target/jacoco/jacoco.xml
 
 
       - name: Restore Maven cache
