@@ -85,5 +85,5 @@ jobs:
             -Pcoverage
         
       - name: list all files
-          run: ls -R
+        run: ls -R
 
