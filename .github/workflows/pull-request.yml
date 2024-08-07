@@ -57,7 +57,7 @@ jobs:
         run: |
           pwd && \
           mkdir -p /home/runner/work/temp/reports && \
-          mv service/target/reports /home/runner/work/temp/reports
+          mv reports /home/runner/work/temp/reports
 
       - name: List and display report files
         run: |
