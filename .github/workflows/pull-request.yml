@@ -87,6 +87,6 @@ jobs:
             -Pcoverage
       - name: list files
         run: |
-          ls -R reports/target/jacoco/
-          ls -R target/site/jacoco/
+          ls -R reports/target/jacoco
+          
 
