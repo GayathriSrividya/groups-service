@@ -58,10 +58,10 @@ jobs:
       - name: xml report && move to another path 
         run: |
           java --version && \
-          ls reports/target/jacoco && \
-          cat reports/target/jacoco/jacoco.xml &&  \
-          mkdir -p /home/runner/temp && \
-          mv reports/target/jacoco/jacoco.xml /home/runner/temp/jacoco.xml
+          mkdir -p /home/temp && \
+          mv reports/ /home/temp/ && \
+          ls /home/temp/reports/target/jacoco && \
+          cat /home/temp/reports/target/jacoco/jacoco.xml && \
 
 
       - name: Restore Maven cache
