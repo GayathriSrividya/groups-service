@@ -87,7 +87,8 @@ jobs:
       - name: check xml again
         run: |
           ls reports/target/jacoco && \
-          cat reports/target/jacoco/jacoco.xml
+          cat reports/target/jacoco/jacoco.xml && \
+          cat /home/runner/temp/jacoco.xml
 
 
   # sonar-analysis:
