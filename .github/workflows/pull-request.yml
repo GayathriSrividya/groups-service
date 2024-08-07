@@ -71,8 +71,6 @@ jobs:
           restore-keys: |
             groups-dependency-cache-
 
-      - name: present working directory
-        run: pwd
       - name: Run SonarQube analysis
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
@@ -85,4 +83,7 @@ jobs:
             -Dsonar.coverage.exclusions=**/cassandra-utils/**,**/platform-cache/**,**/sb-actor/**,**/sb-telemetry-utils/**,**/sb-utils/**,**/models/**,**/bean/*,**/sb-common/** \
             -Dsonar.jacoco.reportPath=**/jacoco/jacoco.exec \
             -Pcoverage
+        
+        - name: list all files
+          run: ls -R
 
