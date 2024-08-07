@@ -8,7 +8,7 @@ on:
 
 jobs:
   run-test-cases:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-2004:202008-01
     steps:
       - name: Set up JDK 11
         uses: actions/setup-java@v4
@@ -49,14 +49,14 @@ jobs:
           path: service/target/group-service-1.0.0-dist.zip
 
   sonar-analysis:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-2004:202008-01
     needs: run-test-cases
     steps:
-      - name: Set up JDK 17
+      - name: Set up JDK 11
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
-          java-version: '17'
+          java-version: '11'
 
       - name: Checkout code
         uses: actions/checkout@v4
@@ -77,7 +77,7 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
-          mvn verify -DskipTests sonar:sonar \
+          mvn verify sonar:sonar \
             -Dsonar.projectKey=GayathriSrividya_groups_service \
             -Dsonar.organization=gayathrisrividya \
             -Dsonar.host.url=https://sonarcloud.io \
@@ -87,7 +87,7 @@ jobs:
              
       - name: list files
         run: |
-          ls -R reports/target/jacoco \
+          ls -R reports/target/jacoco && \
           cat reports/target/jacoco/jacoco.xml
           
 
