@@ -61,7 +61,7 @@ jobs:
 
       - name: List and display report files
         run: |
-          ls /home/runner/temp/reports/target/jacoco && \
+          ls /home/runner/temp/reports && \
           cat /home/runner/temp/reports/target/jacoco/jacoco.xml
 
       - name: Restore Maven cache
