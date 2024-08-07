@@ -55,6 +55,7 @@ jobs:
     
       - name: Move reports to temp directory
         run: |
+          pwd && \
           mkdir -p /home/runner/work/temp/reports && \
           mv service/target/reports /home/runner/work/temp/reports
 
