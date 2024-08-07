@@ -61,6 +61,7 @@ jobs:
 
       - name: List and display report files
         run: |
+          ls /home/runner && \
           ls /home/runner/temp/reports/jacoco && \
           cat /home/runner/temp/reports/jacoco/jacoco.xml
 
