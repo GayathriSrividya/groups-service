@@ -85,4 +85,8 @@ jobs:
             -Dsonar.coverage.exclusions=**/cassandra-utils/**,**/platform-cache/**,**/sb-actor/**,**/sb-telemetry-utils/**,**/sb-utils/**,**/models/**,**/bean/*,**/sb-common/** \
             -Dsonar.coverage.jacoco.xmlReportPaths=reports/target/jacoco/jacoco.xml \
             -Pcoverage
+      - name: list files
+        run: |
+          ls -R reports/target/jacoco/
+          ls -R target/site/jacoco/
 
