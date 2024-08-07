@@ -58,7 +58,7 @@ jobs:
           pwd && \
           cat reports/target/jacoco/jacoco.xml && \
           mkdir -p /home/runner/temp/ && \
-          mv reports /home/runner/temp/
+          cp -r reports /home/runner/temp/
 
       - name: List and display report files
         run: |
