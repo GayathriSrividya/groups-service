@@ -46,13 +46,7 @@ jobs:
         with:
           name: group-service
           path: service/target/group-service-1.0.0-dist.zip
-
-      - name: Set up JDK 17
-        uses: actions/setup-java@v4
-        with:
-          distribution: 'temurin'
-          java-version: '17'
-    
+      
       - name: Move reports to temp directory
         run: |
           pwd && \
@@ -64,6 +58,14 @@ jobs:
         run: |
           ls /home/runner/temp/reports && \
           cat /home/runner/temp/reports/target/jacoco/jacoco.xml
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+    
+    
 
       - name: Restore Maven cache
         uses: actions/cache@v3
