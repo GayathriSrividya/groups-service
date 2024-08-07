@@ -58,7 +58,8 @@ jobs:
       - name: xml report
         run: |
           java --version && \
-          ls service/target/
+          ls reports/target/jacoco && \
+          cat reports/target/jacoco/jacoco.xml
 
 
       - name: Restore Maven cache
