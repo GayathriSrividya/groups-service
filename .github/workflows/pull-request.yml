@@ -73,7 +73,7 @@ jobs:
 
       - name: xml report
         run: |
-          ls reports/target/jacoco/
+          ls service/target/
 
       - name: Run SonarQube analysis
         env:
