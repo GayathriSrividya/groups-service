@@ -32,7 +32,6 @@ jobs:
       - name: Build and Run test cases
         run: mvn clean install
 
-
       - name: Save the build artifact
         run: cd service && mvn play2:dist
 
@@ -53,16 +52,16 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '17'
-      
-      
-      - name: xml report && move to another path 
+    
+      - name: Move reports to temp directory
         run: |
-          java --version && \
-          mkdir -p /home/temp && \
-          mv reports /home/temp && \
-          ls /home/temp/reports/target/jacoco && \
-          cat /home/temp/reports/target/jacoco/jacoco.xml
+          mkdir -p /home/runner/work/temp/reports && \
+          mv service/target/reports /home/runner/work/temp/reports
 
+      - name: List and display report files
+        run: |
+          ls /home/runner/work/temp/reports/jacoco && \
+          cat /home/runner/work/temp/reports/jacoco/jacoco.xml
 
       - name: Restore Maven cache
         uses: actions/cache@v3
@@ -82,57 +81,10 @@ jobs:
             -Dsonar.host.url=https://sonarcloud.io \
             -Dsonar.token=${{ secrets.SONAR_TOKEN }} \
             -Dsonar.coverage.exclusions=**/cassandra-utils/**,**/platform-cache/**,**/sb-actor/**,**/sb-telemetry-utils/**,**/sb-utils/**,**/models/**,**/bean/*,**/sb-common/** \
-            -Dsonar.coverage.jacoco.xmlReportPaths=/home/runner/temp/jacoco.xml \
+            -Dsonar.coverage.jacoco.xmlReportPaths=/home/runner/work/temp/reports/jacoco/jacoco.xml \
             -Pcoverage
-      - name: check xml again
+
+      - name: Check XML report again
         run: |
-          ls reports/target/jacoco && \
-          cat reports/target/jacoco/jacoco.xml && \
-          cat /home/runner/temp/jacoco.xml
-
-
-  # sonar-analysis:
-  #   runs-on: ubuntu-latest
-  #   needs: run-test-cases
-  #   steps:
-  #     - name: Set up JDK 17
-  #       uses: actions/setup-java@v4
-  #       with:
-  #         distribution: 'temurin'
-  #         java-version: '17'
-
-  #     - name: Checkout code
-  #       uses: actions/checkout@v4
-  #       with:
-  #         fetch-depth: 0
-
-  #     - name: Restore Maven cache
-  #       uses: actions/cache@v3
-  #       with:
-  #         path: ~/.m2
-  #         key: groups-dependency-cache-${{ hashFiles('**/pom.xml') }}
-  #         restore-keys: |
-  #           groups-dependency-cache-
-
-  #     - name: xml report
-  #       run: |
-  #         ls service/target/
-
-  #     - name: Run SonarQube analysis
-  #       env:
-  #         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-  #       run: |
-  #         mvn verify sonar:sonar \
-  #           -Dsonar.projectKey=GayathriSrividya_groups_service \
-  #           -Dsonar.organization=gayathrisrividya \
-  #           -Dsonar.host.url=https://sonarcloud.io \
-  #           -Dsonar.token=${{ secrets.SONAR_TOKEN }} \
-  #           -Dsonar.coverage.exclusions=**/cassandra-utils/**,**/platform-cache/**,**/sb-actor/**,**/sb-telemetry-utils/**,**/sb-utils/**,**/models/**,**/bean/*,**/sb-common/** \
-  #           -Dsonar.coverage.jacoco.xmlReportPaths=/home/runner/work/groups-service/groups-service/reports/target/jacoco/jacoco.xml 
-             
-  #     - name: list files
-  #       run: |
-  #         ls -R reports/target/jacoco && \
-  #         cat reports/target/jacoco/jacoco.xml
-          
-
+          ls /home/runner/work/temp/reports/jacoco && \
+          cat /home/runner/work/temp/reports/jacoco/jacoco.xml
