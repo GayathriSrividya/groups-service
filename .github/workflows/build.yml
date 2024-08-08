@@ -50,7 +50,7 @@ jobs:
         run: mvn -f service/pom.xml play2:dist
 
       - name: Store build artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: group-service
           path: service/target/group-service-1.0.0-dist.zip
@@ -83,13 +83,13 @@ jobs:
         with:
           context: ./service/target
           file: ./Dockerfile
+          visibility: public
           push: true
           tags: |
             ${{ steps.meta.outputs.tags }}
           labels: |
             ${{ steps.meta.outputs.labels }}
       
-      # this is the step that generates the attestation means 
       - name: Generate artifact attestation
         uses: actions/attest-build-provenance@v1
         with:
